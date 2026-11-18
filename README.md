@@ -86,14 +86,11 @@ The visualizations include:
 ## Screenshots
 
 ### Expense Tracker Output
-![Expense Output](screenshots/expense-output.png)
-
+![Expense Output](screenshots/expense_output.PNG)
 ### Category-wise Expense Analysis
-![Category Analysis](screenshots/category-analysis.png)
-
+![Category Analysis](screenshots/category_analysis.png)
 ### Monthly Expense Analysis
-![Monthly Analysis](screenshots/monthly-analysis.png)
-
+![Monthly Analysis](screenshots/monthly_analysis.png)
 ## Author
 
 Apeksha Shinde
