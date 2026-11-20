@@ -92,7 +92,7 @@ The visualizations include:
 ![Category Expense Distribution](screenshots/category_expense_distribution.png)
 
 ### Monthly Expense Analysis
-![Monthly Expense Analysis](screenshots/montly_expense_analysis.png)
+![Monthly Expense Analysis](screenshots/monthly_expense_analysis.png)
 
 ### Total Spending by Category
 ![Total Spending by Category](screenshots/total_spending_category.png)
