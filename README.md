@@ -86,13 +86,18 @@ The visualizations include:
 ## Screenshots
 
 ### Expense Tracker Output
-![Expense Output](screenshots/expense-output.png)
+![Expense Output](screenshots/expense_output.PNG)
 
-### Category-wise Expense Analysis
-![Category Analysis](screenshots/category-analysis.png)
+### Category-wise Expense Distribution
+![Category Expense Distribution](screenshots/category_expense_distribution.png)
 
 ### Monthly Expense Analysis
-![Monthly Analysis](screenshots/monthly-analysis.png)
+![Monthly Expense Analysis](screenshots/montly_expense_analysis.png)
+
+### Total Spending by Category
+![Total Spending by Category](screenshots/total_spending_category.png)
+
+
 
 ## Author
 
