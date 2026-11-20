@@ -15,10 +15,15 @@ while True:
     print()
     while True:
         try:
-            choice = int(input("enter your choice: "))
-            break
+            choice = int(input("Enter your choice: "))
+
+            if 1 <= choice <= 7:
+                break
+            else:
+                print("Please enter a choice between 1 and 7!")
+
         except ValueError:
-            print("Please enter a valid choice!")
+            print("Please enter a valid numeric choice!")
     if choice == 1 :
         add_expense()
     elif choice == 2:
@@ -33,9 +38,7 @@ while True:
         expense_summary()
     elif choice == 7:
         print("Thank you for using expense tracker!!")
-        break
-    else :
-        print("Invalid Choice")
         cur.close()
         con.close()
-
+        break
+    

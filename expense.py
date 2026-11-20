@@ -2,18 +2,40 @@ from datetime import datetime
 from database import con, cur
 
 def add_expense():
+    categories = [
+    "Food",
+    "Transport",
+    "Shopping",
+    "Education",
+    "Entertainment",
+    "Health",
+    "Bills",
+    "Other"
+]
+
+    print("\nAvailable Categories:")
+
+    for i, cat in enumerate(categories, start=1):
+        print(f"{i}. {cat}")
+
     while True:
-        title = input("Enter Expense Title: ").strip()
-        if title:
-            break
-        else:
-            print("Expense title cannot be empty!")
+        try:
+            choice = int(input("Select Category (1-8): "))
+
+            if 1 <= choice <= len(categories):
+                category = categories[choice - 1]
+                break
+            else:
+                print("Please select a number between 1 and 8!")
+
+        except ValueError:
+            print("Please enter a valid number!")
     while True:
-        category = input("Enter Category: ").strip()
-        if category:
-            break
-        else:
-            print("Category cannot be empty!")
+            title = input("Enter Expense Title: ").strip()
+            if title:
+                break
+            else:
+                print("Expense title cannot be empty!")
     while True:
         try:
             amount=float(input("Enter Amount: "))
@@ -57,24 +79,38 @@ def view_expense():
             
 
 def search_expense():
-        title = input("Enter Title of Expense to Search : ")
-        cur.execute("select * from expenses where title=%s",(title,))
-        records = cur.fetchall()
-        if not records:
-                print("Expense Not Found!!")
-        else :
-            for item in records:
-                    print(f'Expense id = {item[0]}')
-                    print(f'Expense Title = {item[1]}')
-                    print(f'Expense Category = {item[2]}')
-                    print(f'Expense Amount = {item[3]}')
-                    print(f'Expense Date = {item[4]}')
-                    print("-" * 30)
+    while True:
+        title = input("Enter Title of Expense to Search: ").strip()
+
+        if title:
+            break
+        else:
+            print("Expense title cannot be empty!")
+    cur.execute("select * from expenses where title=%s",(title,))
+    records = cur.fetchall()
+    if not records:
+        print("Expense Not Found!!")
+    else :
+        for item in records:
+            print(f'Expense id = {item[0]}')
+            print(f'Expense Title = {item[1]}')
+            print(f'Expense Category = {item[2]}')
+            print(f'Expense Amount = {item[3]}')
+            print(f'Expense Date = {item[4]}')
+            print("-" * 30)
         
             
 
 def update_expense():
-    id=int(input("Enter Id to update: "))
+    while True:
+        try:
+            id = int(input("Enter Id to update: "))
+            if id > 0:
+                break
+            else:
+                print("ID must be greater than zero!")
+        except ValueError:
+            print("Please enter a valid numeric ID!")
     cur.execute("SELECT * FROM expenses WHERE expense_id = %s", (id,))
     record = cur.fetchone()
     if not record :
@@ -82,7 +118,7 @@ def update_expense():
     else:
         while True:
             try:
-                amount=float(input("Enter Amount: "))
+                amount = float(input("Enter New Amount: "))
                 if amount <= 0 :
                     print("Amount must be greater than zero!")
                 else :
@@ -98,7 +134,15 @@ def update_expense():
         print("Expense Updated Successfully!!")
 
 def delete_expense():
-    id=int(input("Enter Id to Delete: "))
+    while True:
+        try:
+            id = int(input("Enter Id to Delete: "))
+            if id > 0:
+                break
+            else:
+                print("ID must be greater than zero!")
+        except ValueError:
+            print("Please enter a valid numeric ID!")
     cur.execute("SELECT * FROM expenses WHERE expense_id = %s", (id,))
     record = cur.fetchone()
     if not record:
@@ -109,8 +153,6 @@ def delete_expense():
         print("Expense Deleted Successfully!!")
         
 def expense_summary():
-    cur.execute("SELECT COUNT(*) FROM expenses")
-    count = cur.fetchone()[0]
 
     print("======Expense Summary======")
     cur.execute("select sum(amount), count(*),avg(amount), max(amount), min(amount) from expenses")

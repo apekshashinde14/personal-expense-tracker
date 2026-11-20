@@ -1,11 +1,16 @@
 import mysql.connector
 import os
 
+db_password = os.getenv("DB_PASSWORD")
+
+if not db_password:
+    print("Database password not found!")
+    raise SystemExit
 try:
     con = mysql.connector.connect(
         host="localhost",
         user="root",
-        password=os.getenv("DB_PASSWORD"),
+        password=db_password,
         database="expense_tracker"
     )
 

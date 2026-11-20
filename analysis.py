@@ -9,6 +9,11 @@ from database import con, cur
 
 cur.execute("SELECT * FROM expenses")
 records = cur.fetchall()
+if not records:
+    print("No expense records available for analysis!")
+    cur.close()
+    con.close()
+    exit()
 
 
 # 2. Convert Data into Pandas DataFrame
